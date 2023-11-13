@@ -1,2 +1,2 @@
 def process_applicant(applicant):
-    return False
+    return [False, "empty applicant"]
