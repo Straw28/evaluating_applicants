@@ -7,4 +7,4 @@ class TestApplicant(unittest.TestCase):
         self.assertTrue(True)
 
     def test_empty_applicant_returns_False(self):
-        self.assertFalse(process_applicant([])
+        self.assertFalse(process_applicant([]))
