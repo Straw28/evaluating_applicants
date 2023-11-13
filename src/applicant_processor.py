@@ -1,2 +1,4 @@
+from src.application_status import Status
+
 def process_applicant(applicant):
-    return ["pass", "no search criteria"]
+    return [Status.PASS, "no search criteria"]

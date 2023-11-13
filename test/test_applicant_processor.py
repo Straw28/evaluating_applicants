@@ -1,5 +1,6 @@
 import unittest
 from src.applicant_processor import process_applicant
+from src.application_status import Status
 
 class TestApplicant(unittest.TestCase):
     
@@ -7,8 +8,8 @@ class TestApplicant(unittest.TestCase):
         self.assertTrue(True)
 
     def test_no_criteria_returns_pass(self):
-        result = ["pass", "empty applicant"]
+        result = [Status.PASS, "no search criteria"]
         application = []
 
-        self.assertEqual(process_applicant(application), ["pass", "no search criteria"])
+        self.assertEqual(process_applicant(application), result)
     
