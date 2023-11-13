@@ -6,8 +6,9 @@ class TestApplicant(unittest.TestCase):
     def test_canary(self):
         self.assertTrue(True)
 
-    def test_empty_applicant_returns_False(self):
-        result = [False, "empty applicant"]
-        
-        self.assertEqual(process_applicant([]), [False, "empty applicant"])
+    def test_no_criteria_returns_pass(self):
+        result = ["pass", "empty applicant"]
+        application = []
+
+        self.assertEqual(process_applicant(application), ["pass", "no search criteria"])
     

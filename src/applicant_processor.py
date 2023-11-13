@@ -1,2 +1,2 @@
 def process_applicant(applicant):
-    return [False, "empty applicant"]
+    return ["pass", "no search criteria"]
