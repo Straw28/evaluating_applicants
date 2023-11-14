@@ -11,13 +11,13 @@ class TestApplicant(unittest.TestCase):
 
     def test_no_criteria_returns_pass(self):
         result = (Status.PASS, "nothing to check")
-        application = []
+        application = Applicant()
 
         self.assertEqual(process_applicant(application), result)
     
     def test_one_criteria_employment_status_returns_expected_result(self):
         result = (Status.PASS, "Applicant has had previous employment.")
-        application = Applicant(True, "none", "good", "none")
+        application = Applicant(True)
         criteria = employment_status
 
         self.assertEqual(process_applicant(application, criteria), result)
