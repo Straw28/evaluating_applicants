@@ -3,4 +3,4 @@ from dataclasses import dataclass
 @dataclass
 class Applicant:
 
-    employment_status: bool=False
+    employment_status: is_employed

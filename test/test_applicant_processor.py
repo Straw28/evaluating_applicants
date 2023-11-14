@@ -6,6 +6,9 @@ from src.criteria.applicant_employment_status import employment_status
 
 class TestApplicant(unittest.TestCase):
     
+    def application(self):
+        self.application = Applicant(True)
+
     def test_canary(self):
         self.assertTrue(True)
 
@@ -17,7 +20,6 @@ class TestApplicant(unittest.TestCase):
     
     def test_one_criteria_employment_status_returns_expected_result(self):
         result = (Status.PASS, "Applicant has had previous employment.")
-        application = Applicant(True)
         criteria = employment_status
 
-        self.assertEqual(process_applicant(application, criteria), result)
+        self.assertEqual(process_applicant(self.application, criteria), result)
