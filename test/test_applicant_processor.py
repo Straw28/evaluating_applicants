@@ -22,7 +22,7 @@ class TestApplicant(unittest.TestCase):
         self.assertEqual(process_applicant(application), result)
     
     def test_one_criteria_employment_status_returns_expected_result(self):
-        result = self.expected_prev_employment
+        result = self.pass_employed
         criteria = prev_employment
 
         self.assertEqual(process_applicant(self.pass_employed, criteria), result)
