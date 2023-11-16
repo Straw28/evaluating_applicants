@@ -6,19 +6,18 @@ from src.criteria.applicant_employment_status import prev_employment
 
 class TestApplicant(unittest.TestCase):
     def setUp(self):
-        self.application_default = Applicant(False)
         self.application_prev_employment = Applicant(True)
 
-        self.expected_no_listed_employment = (Status.PASS, "nothing to check")
-        self.expected_prev_employment = (Status.PASS, "Applicant has had previous employment.")
+        self.pass_no_check = (Status.PASS, "nothing to check")
+        self.pass_employed = (Status.PASS, "Applicant has had previous employment.")
 
 
     def test_canary(self):
         self.assertTrue(True)
 
     def test_no_criteria_returns_pass(self):
-        result = self.expected_no_listed_employment
-        application = self.application_default
+        result = self.pass_no_check
+        application = Applicant()
 
         self.assertEqual(process_applicant(application), result)
     
@@ -26,4 +25,4 @@ class TestApplicant(unittest.TestCase):
         result = self.expected_prev_employment
         criteria = prev_employment
 
-        self.assertEqual(process_applicant(self.application_prev_employment, criteria), result)
+        self.assertEqual(process_applicant(self.pass_employed, criteria), result)
