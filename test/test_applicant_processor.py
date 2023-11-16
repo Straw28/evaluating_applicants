@@ -26,3 +26,4 @@ class TestApplicant(unittest.TestCase):
         criteria = prev_employment
 
         self.assertEqual(process_applicant(self.pass_employed, criteria), result)
+

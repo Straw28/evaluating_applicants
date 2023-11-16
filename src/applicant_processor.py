@@ -1,3 +1,3 @@
 
-def process_applicant(applicant, criteria=):
+def process_applicant(applicant, criteria):
     return criteria(applicant)
