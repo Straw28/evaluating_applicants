@@ -2,24 +2,28 @@ import unittest
 from src.applicant_processor import process_applicant
 from src.application_status import Status
 from src.applicant import Applicant
-from src.criteria.applicant_employment_status import employment_status
+from src.criteria.applicant_employment_status import prev_employment
 
 class TestApplicant(unittest.TestCase):
-    
-    def application(self):
-        self.application = Applicant(True)
+    def setUp(self):
+        self.application_default = Applicant(False)
+        self.application_prev_employment = Applicant(True)
+
+        self.expected_no_listed_employment = (Status.PASS, "nothing to check")
+        self.expected_prev_employment = (Status.PASS, "Applicant has had previous employment.")
+
 
     def test_canary(self):
         self.assertTrue(True)
 
     def test_no_criteria_returns_pass(self):
-        result = (Status.PASS, "nothing to check")
-        application = Applicant()
+        result = self.expected_no_listed_employment
+        application = self.application_default
 
         self.assertEqual(process_applicant(application), result)
     
     def test_one_criteria_employment_status_returns_expected_result(self):
-        result = (Status.PASS, "Applicant has had previous employment.")
-        criteria = employment_status
+        result = self.expected_prev_employment
+        criteria = prev_employment
 
-        self.assertEqual(process_applicant(self.application, criteria), result)
+        self.assertEqual(process_applicant(self.application_prev_employment, criteria), result)

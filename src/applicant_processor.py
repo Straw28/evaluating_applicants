@@ -1,5 +1,4 @@
-from src.application_status import Status
-from src.applicant import Applicant
+from src.criteria.applicant_employment_status import no_listed_employment
 
-def process_applicant(applicant, criteria=lambda applicant:(Status.PASS, "nothing to check")):
+def process_applicant(applicant, criteria=no_listed_employment):
     return criteria(applicant)
