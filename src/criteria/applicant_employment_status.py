@@ -1,5 +1,5 @@
 from src.application_status import Status
 
-def prev_employment(application):
+def check_employment(application): 
     return (Status.PASS, "Applicant has had previous employment.")
  
