@@ -19,7 +19,7 @@ class TestApplicant(unittest.TestCase):
 
     def test_no_criteria_returns_pass(self):
  
-        self.assertEqual(process_applicant(), self.pass_no_check)
+        self.assertEqual(process_applicant(self.application_with_employment), self.pass_no_check)
     
     def test_one_criteria_employment_status_returns_expected_pass(self):
   
