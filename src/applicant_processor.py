@@ -5,8 +5,15 @@ def no_search_criteria(application):
 
 
 def process_applicant(applicant=(), criteria=()):
-    # if not applicant:
-    #     pass
     if not criteria:
         return no_search_criteria(applicant)
-    return criteria(applicant)
+
+    if callable(criteria):
+        criteria = [criteria]
+
+    result = applicant
+
+    for criterion in criteria:
+        result = criterion(result) if callable(criterion) else result
+
+    return result
