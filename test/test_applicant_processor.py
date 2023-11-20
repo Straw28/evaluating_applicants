@@ -9,6 +9,7 @@ class TestApplicant(unittest.TestCase):
     def setUp(self):
         self.application_with_employment = Applicant(True)
         self.application_with_no_employment = Applicant(False)
+        self.applicantion_with_employment_and_no_criminal_record = Applicant(True, True)
 
         self.pass_no_check = (Status.PASS, "nothing to check")
         self.pass_employed = (Status.PASS, "Applicant has had previous employment.")
@@ -25,13 +26,14 @@ class TestApplicant(unittest.TestCase):
     
     def test_one_criteria_employment_status_returns_expected_pass(self):
   
-        self.assertEqual(process_applicant(self.application_with_employment, check_employment), self.pass_employed)
+        self.assertEqual(process_applicant(self.application_with_employment, check_employment), [self.pass_employed])
 
     def test_one_criteria_employment_status_returns_expected_fail(self):
   
-        self.assertEqual(process_applicant(self.application_with_no_employment, check_employment), self.fail_employed)
+        self.assertEqual(process_applicant(self.application_with_no_employment, check_employment), [self.fail_employed])
 
     def test_two_criteria_employment_and_criminal_status_returns_expected_pass(self):
         criterias = [check_employment, check_criminal_record]
 
-        self.assertEqual(process_applicant(self.application_with_no_employment, criterias), self.pass_no_criminal_record)
+
+        self.assertEqual(process_applicant(self.applicantion_with_employment_and_no_criminal_record, criterias), [self.pass_employed, self.pass_no_criminal_record])
