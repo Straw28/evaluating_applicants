@@ -14,6 +14,8 @@ class TestApplicant(unittest.TestCase):
         self.pass_employed = (Status.PASS, "Applicant has had previous employment.")
         self.fail_employed = (Status.FAIL, "Applicant has no previous employment.")
         self.pass_no_criminal_record = (Status.PASS, "Applicant has had no criminal records.")
+        self.pass_employed_and_no_criminal_record(Status.PASS, "Applicant has had previous employment.", Status.PASS, "Applicant has had no criminal records.")
+
 
 
     def test_canary(self):
@@ -34,4 +36,4 @@ class TestApplicant(unittest.TestCase):
     def test_two_criteria_employment_and_criminal_status_returns_expected_pass(self):
         criterias = [check_employment, check_criminal_record]
 
-        self.assertEqual(process_applicant(self.application_with_no_employment, criterias), self.pass_no_criminal_record)
+        self.assertEqual(process_applicant(self.application_with_no_employment, criterias), self.pass_employed_and_no_criminal_record)
