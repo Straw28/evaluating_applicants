@@ -5,6 +5,8 @@ def no_search_criteria(application):
 
 
 def process_applicant(applicant=(), criteria=()):
+    results = []
+
     if not criteria:
         return no_search_criteria(applicant)
 
@@ -15,5 +17,6 @@ def process_applicant(applicant=(), criteria=()):
 
     for criterion in criteria:
         result = criterion(result) if callable(criterion) else result
+        results.append(result)
 
-    return result
+    return results
