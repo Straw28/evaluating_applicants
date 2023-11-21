@@ -26,12 +26,13 @@ class TestApplicant(unittest.TestCase):
     
     def test_one_criteria_employment_status_returns_expected_pass(self):
   
-        self.assertEqual(process_applicant(self.application_with_employment, check_employment), [self.pass_employed])
+        self.assertEqual(process_applicant(self.application_with_employment, check_employment), self.pass_employed)
 
     def test_one_criteria_employment_status_returns_expected_fail(self):
   
-        self.assertEqual(process_applicant(self.application_with_no_employment, check_employment), [self.fail_employed])
+        self.assertEqual(process_applicant(self.application_with_no_employment, check_employment), self.fail_employed)
 
     def test_two_criteria_employment_and_criminal_status_returns_expected_pass(self):
-      
-        self.assertEqual(process_applicant(self.applicantion_with_employment_and_no_criminal_record, check_employment, check_criminal_record), self.pass_employed, self.pass_no_criminal_record)
+        print(process_applicant(self.applicantion_with_employment_and_no_criminal_record, check_employment, check_criminal_record))
+     
+        self.assertEqual(process_applicant(self.applicantion_with_employment_and_no_criminal_record, check_employment, check_criminal_record), (self.pass_employed, self.pass_no_criminal_record))

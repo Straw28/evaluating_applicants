@@ -5,13 +5,9 @@ def no_search_criteria(application):
 
 
 def process_applicant(applicant, *criteria):
-
     if not criteria:
         return no_search_criteria(applicant)
 
-    if callable(criteria):
-        criteria = [criteria]
+    processed_results = [criterion(applicant) if callable(criterion) else criterion for criterion in criteria]
 
-    results = tuple(criterion(applicant) if callable(criterion) else applicant for criterion in criteria)
-
-    return results
+    return processed_results[0] if len(processed_results) == 1 else tuple(processed_results)
