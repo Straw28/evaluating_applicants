@@ -4,6 +4,8 @@ from src.application_status import Status
 from src.applicant import Applicant
 from src.criteria.applicant_employment_status import evaluate_application as check_employment
 from src.criteria.applicant_criminal_record import evaluate_application as check_criminal_record
+from src.criteria.applicant_credit_record import evaluate_application as check_credit_record
+from src.criteria.applicant_security_clearance import evaluate_application as check_security_clearance
 
 class TestApplicant(unittest.TestCase):
     def setUp(self):
@@ -21,6 +23,7 @@ class TestApplicant(unittest.TestCase):
         self.fail_employed_and_has_criminal_record = (Status.FAIL, "Applicant has had previous employment. Applicant has had criminal records.")
 
     def test_canary(self):
+
         self.assertTrue(True)
 
     def test_no_criteria_returns_pass(self):
@@ -40,7 +43,54 @@ class TestApplicant(unittest.TestCase):
         self.assertEqual(process_applicant(self.applicantion_with_employment_and_no_criminal_record, check_employment, check_criminal_record), self.pass_employed_and_no_criminal_record)
 
     def test_two_criteria_employment_fails_criminal_pass_returns_fail(self):
+
         self.assertEqual(process_applicant(self.applicantion_with_no_employment_and_no_criminal_record, check_employment, check_criminal_record), self.fail_employed_and_no_criminal_record)
 
     def test_two_criteria_employment_pass_criminal_fails_returns_fail(self):
+
         self.assertEqual(process_applicant(self.applicantion_with_employment_and_has_criminal_record, check_employment, check_criminal_record), self.fail_employed_and_has_criminal_record)
+
+    def test_employment_criteria_returns_pass(self):
+        status, message = check_employment(self.application_with_employment)
+
+        self.assertEqual(status, Status.PASS)
+
+    def test_employment_criteria_returns_fail(self):
+        status, message = check_employment(self.application_with_no_employment)
+
+        self.assertEqual(status, Status.FAIL)
+
+    def test_criminal_record_returns_pass(self):
+        application = Applicant(has_no_criminal_record=True)
+        status, message = check_criminal_record(application)
+    
+        self.assertEqual(status, Status.PASS)
+
+    def test_criminal_record_returns_fail(self):
+        application = Applicant(has_no_criminal_record=False)
+        status, message = check_criminal_record(application)
+        self.assertEqual(status, Status.FAIL)
+
+    def test_credit_records_returns_pass(self):
+        application = Applicant(has_good_credit_record=True)
+        status = check_credit_record(application)
+
+        self.assertEqual(status, Status.PASS)
+
+    def test_credit_records_returns_fail(self):
+        application = Applicant(has_good_credit_record=False)
+        status = check_credit_record(application)        
+        
+        self.assertEqual(status, Status.FAIL)
+
+    def test_security_clearance_returns_pass(self):
+        application = Applicant(has_security_clearance=True)
+        status = check_security_clearance(application)
+        
+        self.assertEqual(status, Status.PASS)
+
+    def test_security_clearance_returns_fail(self):
+        application = Applicant(has_security_clearance=False)
+        status = check_security_clearance(application)
+        
+        self.assertEqual(status, Status.FAIL)

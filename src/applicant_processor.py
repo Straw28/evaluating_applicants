@@ -1,12 +1,15 @@
 from src.application_status import Status
-
-def no_search_criteria(application): 
-    return (Status.PASS, "nothing to check")
+from functools import reduce
 
 
 def process_applicant(applicant, *criteria):
     if not criteria:
-        return no_search_criteria(applicant)
+        return (Status.PASS, "nothing to check")
 
-    passed, messages = zip(*(criterion(applicant) for criterion in criteria))
-    return (Status.FAIL, " ".join(messages)) if any(status == Status.FAIL for status in passed) else (Status.PASS, " ".join(messages))
+    return reduce(combine_results, [evaluator(applicant) for evaluator in criteria ])
+
+def combine_results(results1, results2):
+    status1, message1 = results1
+    status2, message2 = results2
+
+    return(Status.PASS if status1 == status2 == Status.PASS else Status.FAIL, " ".join([message1,message2]))
