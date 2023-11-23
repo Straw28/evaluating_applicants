@@ -12,4 +12,4 @@ def combine_results(results1, results2):
     status1, message1 = results1
     status2, message2 = results2
 
-    return(Status.PASS if status1 == status2 == Status.PASS else Status.FAIL, " ".join([message1,message2]))
+    return(Status.PASS if status1 == status2 == Status.PASS else Status.FAIL, " ".join([message1, message2])) 
