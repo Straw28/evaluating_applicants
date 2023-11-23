@@ -5,18 +5,14 @@ from src.applicant import Applicant
 
 class TestApplicant(unittest.TestCase):
    
-    def test_canary(self):
-
-        self.assertTrue(True)
-         
     def test_security_clearance_returns_pass(self):
         application = Applicant(has_security_clearance=True)
-        status = check_security_clearance(application)
+        status, message = check_security_clearance(application)
         
-        self.assertEqual(status, Status.PASS)
+        self.assertEqual((status, message), (Status.PASS, "Applicant meets security clearance requirements."))
 
     def test_security_clearance_returns_fail(self):
         application = Applicant(has_security_clearance=False)
-        status = check_security_clearance(application)
+        status, message = check_security_clearance(application)
         
-        self.assertEqual(status, Status.FAIL)
+        self.assertEqual((status, message), (Status.FAIL, "Applicant does not meet security clearance requirements."))

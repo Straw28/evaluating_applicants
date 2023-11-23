@@ -5,19 +5,14 @@ from src.applicant import Applicant
 
 class TestApplicant(unittest.TestCase):
    
-    def test_canary(self):
-
-        self.assertTrue(True)
-
     def test_credit_records_returns_pass(self):
         application = Applicant(has_good_credit_record=True)
-        status = check_credit_record(application)
+        status, message = check_credit_record(application)
 
-        self.assertEqual(status, Status.PASS)
+        self.assertEqual((status, message), (Status.PASS, "Applicant has a good credit record."))
 
     def test_credit_records_returns_fail(self):
         application = Applicant(has_good_credit_record=False)
-        status = check_credit_record(application)        
+        status, message = check_credit_record(application)        
         
-        self.assertEqual(status, Status.FAIL)
-        
+        self.assertEqual((status, message), (Status.FAIL, "Applicant has a bad credit record."))
