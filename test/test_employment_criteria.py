@@ -3,7 +3,7 @@ from src.criteria.applicant_employment_status import evaluate_application as che
 from src.application_status import Status
 from src.applicant import Applicant
 
-class TestApplicant(unittest.TestCase):
+class TestEmploymentStatusCriteria(unittest.TestCase):
     
     def setUp(self):
         self.application_with_employment = Applicant(True)

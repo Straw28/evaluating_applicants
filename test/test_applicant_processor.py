@@ -7,7 +7,7 @@ from src.criteria.applicant_criminal_record import evaluate_application as check
 from src.criteria.applicant_credit_record import evaluate_application as check_credit_record
 from src.criteria.applicant_security_clearance import evaluate_application as check_security_clearance
 
-class TestApplicant(unittest.TestCase):
+class TestApplicantProcessor(unittest.TestCase):
     def setUp(self):
         self.application_with_employment = Applicant(True)
         self.application_with_no_employment = Applicant(False)

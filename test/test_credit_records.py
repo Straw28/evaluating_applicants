@@ -3,7 +3,7 @@ from src.criteria.applicant_credit_record import evaluate_application as check_c
 from src.application_status import Status
 from src.applicant import Applicant
 
-class TestApplicant(unittest.TestCase):
+class TestCreditRecordCriteria(unittest.TestCase):
    
     def test_credit_records_returns_pass(self):
         application = Applicant(has_good_credit_record=True)

@@ -3,7 +3,7 @@ from src.criteria.applicant_criminal_record import evaluate_application as check
 from src.application_status import Status
 from src.applicant import Applicant
 
-class TestApplicant(unittest.TestCase):
+class TestCriminalRecordCriteria(unittest.TestCase):
     
     def test_criminal_record_returns_pass(self):
             application = Applicant(has_no_criminal_record=True)
