@@ -9,13 +9,14 @@ import sys
 
 sys.path.append(os.path.dirname(__file__))
 
+
 @task
 def setup():
     sh('python -m pip install -U coverage parameterized radon')
 
 @task
 def test():
-    sh('python -m coverage run --source src -m unittest discover -s test')
+    sh('python -m coverage run --source src --omit src/evaluator.py -m unittest discover -s test')
     sh('python -m coverage html')
     sh('python -m coverage report --show-missing')
 
@@ -38,10 +39,11 @@ def radon():
     
 @task
 def run():
-    sh("python -i src/evaluator_UI.py")
+    sh("python -i src/evaluator.py")
+
 
 @task
-@needs(['setup', 'clean', 'test', 'radon', 'run'])
+@needs(['setup', 'clean', 'test', 'radon'])
 def default():
     pass
 

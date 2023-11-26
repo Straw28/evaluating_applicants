@@ -49,3 +49,4 @@ def get_application_details():
 
 if __name__ == "__main__":
     get_application_details()
+
