@@ -35,9 +35,13 @@ def radon():
     sh('radon cc src -a -nb > radon.report')
     if os.stat("radon.report").st_size != 0:
         raise Exception('radon found complex code')
+    
+@task
+def run():
+    sh("python -i src/evaluator_UI.py")
 
 @task
-@needs(['setup', 'clean', 'test', 'radon'])
+@needs(['setup', 'clean', 'test', 'radon', 'run'])
 def default():
     pass
 
