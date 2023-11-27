@@ -3,6 +3,7 @@ from applicant_processor import process_applicant
 from fetch_criteria import fetch_criteria
 from fetch_criterion import fetch_criterion
 
+
 def display_menu(path):
     print("Application Evaluation Criteria List: ")
     for menu_num, criterion in enumerate(fetch_criteria(path), start=1):
@@ -56,4 +57,4 @@ if __name__ == "__main__":
     chosen_criteria = grab_criteria_by_number(get_user_criteria())
     new_applicant = create_application(get_application_info())
     for criterion in chosen_criteria:
-        process_applicant(new_applicant, fetch_criterion(criterion, 'criteria'))
+        print(process_applicant(new_applicant, fetch_criterion(criterion, 'criteria')))
