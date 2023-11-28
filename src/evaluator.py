@@ -56,5 +56,5 @@ if __name__ == "__main__":
     display_menu('src/criteria')
     chosen_criteria = grab_criteria_by_number(get_user_criteria())
     new_applicant = create_application(get_application_info())
-    for criterion in chosen_criteria:
-        print(process_applicant(new_applicant, fetch_criterion(criterion, 'criteria')))
+    criteria_functions = [fetch_criterion(criterion, 'criteria') for criterion in chosen_criteria]
+    print(process_applicant(new_applicant, *criteria_functions))
