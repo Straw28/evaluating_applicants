@@ -1,5 +1,5 @@
-from src.applicant import Applicant
-from src.applicant_processor import process_applicant
+from applicant import Applicant
+from applicant_processor import process_applicant
 from fetch_criteria import fetch_criteria
 # from src.fetch_criterion import fetch_criterion
 

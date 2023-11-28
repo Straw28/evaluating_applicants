@@ -1,7 +1,9 @@
 import unittest
-from src.criteria.applicant_criminal_record import evaluate_application as check_criminal_record
-from src.application_status import Status
-from src.applicant import Applicant
+import sys
+sys.path.append('src')
+from criteria.applicant_criminal_record import evaluate_application as check_criminal_record
+from application_status import Status
+from applicant import Applicant
 
 class TestCriminalRecordCriteria(unittest.TestCase):
     

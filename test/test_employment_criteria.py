@@ -1,7 +1,9 @@
 import unittest
-from src.criteria.applicant_employment_status import evaluate_application as check_employment
-from src.application_status import Status
-from src.applicant import Applicant
+import sys
+sys.path.append('src')
+from criteria.applicant_employment_status import evaluate_application as check_employment
+from application_status import Status
+from applicant import Applicant
 
 class TestEmploymentStatusCriteria(unittest.TestCase):
     

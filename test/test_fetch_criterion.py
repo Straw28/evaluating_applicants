@@ -1,9 +1,10 @@
 import unittest
-import unittest
-from src.application_status import Status
-from src.applicant import Applicant
-from src.fetch_criterion import fetch_criterion
-from src.fetch_criteria import fetch_criteria
+import sys
+sys.path.append('src')
+from application_status import Status
+from applicant import Applicant
+from fetch_criterion import fetch_criterion
+from fetch_criteria import fetch_criteria
 
 class TestCriteriaFetchers(unittest.TestCase):
    

@@ -1,4 +1,4 @@
-from src.application_status import Status
+from application_status import Status
 from functools import reduce
 
 

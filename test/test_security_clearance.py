@@ -1,7 +1,9 @@
 import unittest
-from src.criteria.applicant_security_clearance import evaluate_application as check_security_clearance
-from src.application_status import Status
-from src.applicant import Applicant
+import sys
+sys.path.append('src')
+from criteria.applicant_security_clearance import evaluate_application as check_security_clearance
+from application_status import Status
+from applicant import Applicant
 
 class TestSecurityClearenceCriteria(unittest.TestCase):
    

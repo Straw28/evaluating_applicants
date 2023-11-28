@@ -1,11 +1,12 @@
 import unittest
-from src.applicant_processor import process_applicant
-from src.application_status import Status
-from src.applicant import Applicant
-from src.criteria.applicant_employment_status import evaluate_application as check_employment
-from src.criteria.applicant_criminal_record import evaluate_application as check_criminal_record
-from src.criteria.applicant_credit_record import evaluate_application as check_credit_record
-from src.criteria.applicant_security_clearance import evaluate_application as check_security_clearance
+import sys
+sys.path.append('src')
+from applicant_processor import process_applicant
+from application_status import Status
+from applicant import Applicant
+from criteria.applicant_employment_status import evaluate_application as check_employment
+from criteria.applicant_criminal_record import evaluate_application as check_criminal_record
+
 
 class TestApplicantProcessor(unittest.TestCase):
     def setUp(self):
