@@ -40,7 +40,7 @@ def get_application_info():
     has_no_criminal_record = process_applicant_info("Does the applicant have no criminal record?")
     has_good_credit_record = process_applicant_info("Does the applicant have a good credit record?")
     has_security_clearance = process_applicant_info("Does the applicant have security clearance?")
-
+    #Feedback: what is the consequence of this design decision?
     return {
         "is_employed": is_employed,
         "has_no_criminal_record": has_no_criminal_record,
