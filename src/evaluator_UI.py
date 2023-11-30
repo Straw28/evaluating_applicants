@@ -41,15 +41,8 @@ def get_application_info():
     has_good_credit_record = process_applicant_info("Does the applicant have a good credit record?")
     has_security_clearance = process_applicant_info("Does the applicant have security clearance?")
 
-    return {
-        "is_employed": is_employed,
-        "has_no_criminal_record": has_no_criminal_record,
-        "has_good_credit_record": has_good_credit_record,
-        "has_security_clearance": has_security_clearance
-    }
+    return Applicant(is_employed, has_no_criminal_record, has_good_credit_record, has_security_clearance)
 
-def create_application(application_info):
-    return Applicant(**application_info)
 
 def add_applicant_valid_response():
         while True:
@@ -72,7 +65,7 @@ if __name__ == "__main__":
     
     while continue_entering_applicants:
 
-        new_applicant = create_application(get_application_info()) 
+        new_applicant = get_application_info()
         print(process_applicant(new_applicant, *criteria_functions))
 
         continue_entering_applicants = add_applicant_valid_response()

@@ -16,7 +16,7 @@ def setup():
 
 @task
 def test():
-    sh('python -m coverage run --source src --omit src/evaluator.py -m unittest discover -s test')
+    sh('python -m coverage run --source src --omit src/evaluator_UI.py -m unittest discover -s test')
     sh('python -m coverage html')
     sh('python -m coverage report --show-missing')
 
@@ -39,7 +39,7 @@ def radon():
     
 @task
 def run():
-    sh("python -i src/evaluator.py")
+    sh("python -i src/evaluator_UI.py")
 
 
 @task
