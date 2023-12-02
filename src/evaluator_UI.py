@@ -1,4 +1,5 @@
 from applicant import Applicant
+from application_status import Status
 from dataclasses import fields
 from applicant_processor import process_applicant
 from fetch_criteria import fetch_criteria
@@ -62,6 +63,10 @@ def add_applicant_valid_response():
             except ValueError:
                 print("Invalid input. Please enter Yes or No.")
                 
+def format_output(application):
+    status, message = application
+    print("Applicant passes. " + message) if status == Status.PASS else print("Applicant does not pass. " + message)
+
 if __name__ == "__main__": 
     display_menu('src/criteria')
     chosen_criteria = grab_criteria_by_number(get_user_criteria()) 
@@ -72,6 +77,6 @@ if __name__ == "__main__":
     while continue_entering_applicants:
 
         new_applicant = create_application(get_application_info()) 
-        print(process_applicant(new_applicant, *criteria_functions))
+        format_output(process_applicant(new_applicant, *criteria_functions))
 
         continue_entering_applicants = add_applicant_valid_response()
