@@ -34,15 +34,19 @@ def process_applicant_info(question: str) -> bool:
             except ValueError:
                 print("Invalid input. Please enter True or False.")
 
-def get_application_info():
-    print("Provide applicant details:")
-    is_employed = process_applicant_info("Is the applicant employed?")
-    has_no_criminal_record = process_applicant_info("Does the applicant have no criminal record?")
-    has_good_credit_record = process_applicant_info("Does the applicant have a good credit record?")
-    has_security_clearance = process_applicant_info("Does the applicant have security clearance?")
+def get_application_info(criteria_list):
+    application_info = {}
 
-    return Applicant(is_employed, has_no_criminal_record, has_good_credit_record, has_security_clearance)
+    print("Please provide True or false for application details:")
 
+    for question in criteria_list:
+        answer = process_applicant_info(question)
+        application_info[question] = answer
+
+    return application_info
+
+def create_application(application_info):
+    return Applicant(**application_info)
 
 def add_applicant_valid_response():
         while True:
@@ -65,7 +69,7 @@ if __name__ == "__main__":
     
     while continue_entering_applicants:
 
-        new_applicant = get_application_info()
+        new_applicant = create_application(get_application_info(fetch_criteria('src/criteria'))) 
         print(process_applicant(new_applicant, *criteria_functions))
 
         continue_entering_applicants = add_applicant_valid_response()
