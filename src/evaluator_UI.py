@@ -27,7 +27,7 @@ def grab_criteria_by_number(user_response):
 def process_applicant_info(question: str) -> bool:
         while True:
             try:
-                user_input = input(f"{question} (True/False): ").lower()
+                user_input = input(f"{question} (True/False): ").lower().strip()
                 if user_input in ['true', 'false']:
                     return user_input == 'true'
                 raise ValueError
