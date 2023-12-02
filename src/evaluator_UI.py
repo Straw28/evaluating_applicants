@@ -1,4 +1,5 @@
 from applicant import Applicant
+from dataclasses import fields
 from applicant_processor import process_applicant
 from fetch_criteria import fetch_criteria
 from fetch_criterion import fetch_criterion
@@ -34,14 +35,15 @@ def process_applicant_info(question: str) -> bool:
             except ValueError:
                 print("Invalid input. Please enter True or False.")
 
-def get_application_info(criteria_list):
+def get_application_info():
     application_info = {}
+    applicant_fields = fields(Applicant)
 
     print("Please provide True or false for application details:")
 
-    for question in criteria_list:
-        answer = process_applicant_info(question)
-        application_info[question] = answer
+    for field in applicant_fields:
+        answer = process_applicant_info(field.name)
+        application_info[field.name] = answer
 
     return application_info
 
@@ -69,7 +71,7 @@ if __name__ == "__main__":
     
     while continue_entering_applicants:
 
-        new_applicant = create_application(get_application_info(fetch_criteria('src/criteria'))) 
+        new_applicant = create_application(get_application_info()) 
         print(process_applicant(new_applicant, *criteria_functions))
 
         continue_entering_applicants = add_applicant_valid_response()
